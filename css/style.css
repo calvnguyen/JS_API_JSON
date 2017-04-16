@@ -1,0 +1,162 @@
+/*CSS reset settings here*/
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    font-family: Helvetica !important;
+}
+
+.nav-bar{
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background-color: black;
+    color: #e4e4e4;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.nav-bar .logo {
+    text-align: center
+}
+.nav-bar .logo img{
+    height: 70px;
+}
+.nav-bar ul.nav-container{
+    list-style: none;
+    padding: 0;
+}
+
+.nav-bar ul.nav-container li.nav-item{
+    background-color: #3e3d3d;
+    margin-top: 3px;
+    padding: 10px;
+}
+
+.nav-bar ul.nav-container li.nav-item.border-blue{
+    border-right: solid 5px #4e9ad3;
+}
+.nav-bar ul.nav-container li.nav-item.border-orrange{
+    border-right: solid 5px #ff9400;
+}
+.nav-bar ul.nav-container li.nav-item.border-pink{
+    border-right: solid 5px #f631ef;
+}
+
+.nav-bar ul.nav-container li.nav-item a{
+    display: block;
+    text-shadow: none;
+    font-size: 14px;
+    text-decoration: none;
+    color: #e4e4e4;
+    height: auto;
+    line-height: 30px;
+}
+
+.va-m{
+    vertical-align: middle
+}
+
+.content{
+    position: fixed;
+    left: 200px;
+    right: 0px;
+    top: 0;
+    bottom: 0;
+    overflow-x: hidden;
+}
+
+.content .top-pan{
+    color: #403f3f;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: initial;
+    position: relative;
+}
+
+.content .top-pan img{
+    width: 100%
+}
+
+.content .title{
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+}
+
+.ft-60{
+    font-size: 60px;
+}
+
+.result-pan{
+    padding: 10px;
+}
+
+.card{
+    color: #403f3f;
+    border: solid lightgray 1px;
+    border-radius: 2px;
+    margin-bottom: 30px;
+}
+
+.card .card-img{
+    text-align: center;
+    height: 200px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.card .card-img img{
+    width: 100%;
+    height: 100%;
+}
+
+.card .card-title{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.card .card-img-file{
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.card .card-divide{
+    border-top: solid 2px lightgray;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.card .card-description{
+    font-size: 12px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    line-height: 24px;
+    height: 150px;
+    overflow-x: hidden;
+}
+
+
+.card .card-btns{
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+
+.card .card-btns a{
+    text-shadow: none;
+    font-size: 14px;
+    text-decoration: none;
+    color: #403f3f;
+    height: auto;
+    line-height: 30px;
+}

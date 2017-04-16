@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dev Box</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="logo">
+            <img src="images/logo.png">
+        </div>
+        <ul class="nav-container">
+            <li class="nav-item border-blue"><a href="#"><i class="material-icons va-m">explore</i>  EXPLORER</a></li>
+            <li class="nav-item border-pink"><a href="#"><i class="material-icons va-m">folder</i>  FOLDER</a></li>
+            <li class="nav-item border-orrange"><a href="#"><i class="material-icons va-m">cloud_upload</i>  UPLOAD</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="top-pan">
+            <img src="images/top_banner.jpg">
+            <div class="title">
+                <div>EXPLORER YOUR DIGITAL CONTENT</div>
+                <div class="ft-60">ASSETS</div>
+            </div>
+        </div>
+        <div class="result-pan" style="height: 1000px;">
+            <div style="text-align: right">
+                <button onclick="reOrder()"><i class="material-icons">sort_by_alpha</i></button>
+            </div>
+            <div id="result-panel" class="row">
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="data.json"></script>
+
+    <script type="text/javascript">
+        var order = true;
+        var myData = [];
+
+        function reOrder(){
+            order = !order;
+            render_elements();
+        }
+
+        function loadJSON(file, callback) {
+            var xobj = new XMLHttpRequest();
+            xobj.overrideMimeType("application/json");
+            xobj.open('GET', file, true); 
+            xobj.onreadystatechange = function () {
+                if (xobj.readyState == 4 && xobj.status == "200") {
+                    // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+                    callback(xobj.responseText);
+                }
+            };
+            xobj.send(null);
+        }
+
+        function load(callback) {
+            loadJSON("http://192.168.1.246:8000/data.json", function(response){
+                        myData = JSON.parse(response);
+                        callback();
+                    }
+            );
+        }
+
+        function render_elements(){
+            var elem = document.getElementById("result-panel");
+            var drawData = myData.filter(function(obj){
+                return obj.is_published == true;
+            }).sort(function(a,b){
+                    return order ? (a.title.toLowerCase() > b.title.toLowerCase()) : (a.title.toLowerCase() < b.title.toLowerCase())
+            });
+            console.log(drawData);
+            var htmlStr = '';
+            for (var i=0; i<drawData.length; i++){
+                var objData = drawData[i];
+                var title = objData.title.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+                htmlStr += ('<div class="col-xs-4"> \
+                        <div class="card"> \
+                        <div class="card-img"> \
+                        <img src="images/' + objData.image_name + '"> \
+                        </div> \
+                        <div class="card-title"> \
+                        ' + title + ' \
+                </div> \
+                <div class="card-img-file"> \
+                        ' + objData.image_name + ' \
+                </div> \
+                <div class="card-divide"></div> \
+                        <div class="card-description"> \
+                        ' + objData.description + ' \
+                </div> \
+                <div class="card-btns"> \
+                        <a href="#"><i class="material-icons">favorite</i></a> \
+                <a href="#"><i class="material-icons">grade</i></a> \
+                </div> \
+                </div> \
+                </div>');
+            }
+            elem.innerHTML = htmlStr;
+        }
+
+        load(render_elements);
+    </script>
+    <script>
+
+    </script>
+</body>
+</html>
